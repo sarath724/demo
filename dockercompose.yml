@@ -1,0 +1,24 @@
+version: '3'
+services:
+
+    server:
+        build:
+            dockerfile: Dockerfile
+            context: .
+        volumes:
+            - 'myshare:/usr/local/lib/'
+
+    tomcat:
+        restart: always
+        build:
+            dockerfile: Dockerfile2
+            context: .
+        #image: tomcat
+        #ports:
+        #  - '8080:8080'
+        volumes:
+          - 'myshare:/usr/local/tomcat/webapps/'
+
+volumes:
+  myshare:
+    driver: local
